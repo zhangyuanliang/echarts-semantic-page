@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>住房公积金（统计）</title>
+	<link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+	<link type="text/css" href="umeditor/themes/default/css/umeditor.css" rel="stylesheet">
+	<style type="text/css">
+		#top{margin: 0px 20px 14px 20px;padding: 20px 20px 8px 0px;}
+		#center,#bottom{margin: 0px 20px 0 20px;}
+		.topfont{font-size: 18px;color: #999;font-family: '微软雅黑';}
+		.addborder{border-bottom: 2px solid #72dbf9;}
+		.addpad{padding-bottom: 8px;margin-bottom: 14px;}
+		.rightAlign{margin-left: 828px;}
+		.labelfont{font-size: 0.85714286rem;}
+		.div_relative{width: 236px; position: fixed!important; left: 30px; top: 20px;}
+		.addbtn{padding-left:20px;}
+		tbody tr{height: 38px;}
+		tbody td{padding-top: 0px!important;padding-bottom: 0px!important;line-height: 38px;}
+		#addEditor .hint{font-size: 14px; color: #999999;}
+		.classifydiv{width: 633px;height:220px;border:solid 1px #D4D4D5;position:fixed;left:33px;top: 198px;
+			z-index:9999;background-color:white;padding: 8px}
+	</style>
+</head>
+<body>
+	<div id="top" class="topfont addborder popup">
+		<i class="comments icon"></i>留言列表
+		<span class="rightAlign" data-html="
+		   	<div class='ui' style='width: 236px;'>
+			   	<div class='ui top attached label'>您可以对问题做以下处理：</div>
+			   	<div class='labelfont'>
+			   		<b style=color:#646565>1.忽略：</b><span style=color:#979898>忽略访客提出的问题</span><br>
+			   		<b style=color:#646565>2.回答：</b><span style=color:#979898>为该问题设置答案</span><br>
+			   		<b style=color:#646565>3.忽略相同：</b><span style=color:#979898>问题相同的问法一并忽略</span><br>
+			   		<b style=color:#646565>4.永久忽略：</b><span style=color:#979898>若该问题以后再被问到,将不再出现在未知列表中</span>
+			   	</div>
+			</div>" >
+			<i class="info circle icon"></i>
+		</span>
+	</div>
+	<div id="center">
+		<div>
+			<div class="ui icon mini input" style="margin-left: 19px;width: 280px;">
+			  <input type="text" placeholder="搜索...">
+			  <i class="search link icon"></i>
+			</div>
+			<div class="ui pointing dropdown link item" style="margin-left: 603px;">
+				<div class="ui inline dropdown" tabindex="0">
+					<div class="text">排序</div>
+					<i class="dropdown icon"></i>
+					<div class="menu" tabindex="-1">
+						<div class="item" data-text="正序">时间正序</div>
+						<div class="item" data-text="倒序">时间倒序</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<div style="width:70%;margin:10px 0 50px 20px ">
+			<div class="row">
+				<div class="column">
+					<table class="ui blue sortable selectable celled striped compact table">
+						<thead>
+							<tr>
+								<th class="one wide">序号</th>
+								<th class="nine wide">留言内容</th>
+								<th class="three wide">时间</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td class="commentCont"><span>提取公积金流程</span></td>
+								<td>2016-12-23 11:22:58</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td class="commentCont"><span>公积金办理地点在哪？</span></td>
+								<td>2016-12-20 18:35:09</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td class="commentCont"><span>XXX小区可以公积金贷款买房吗？</span></td>
+								<td>2016-12-17 08:21:19</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr><th colspan="4">
+								<div class="ui right floated pagination menu">
+									<a class="icon item">
+										<i class="left chevron icon"></i>
+									</a>
+									<a class="item">1</a>
+									<a class="item">2</a>
+									<a class="item">3</a>
+									<a class="item">4</a>
+									<a class="icon item">
+										<i class="right chevron icon"></i>
+									</a>
+								</div>
+							</th></tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="bottom">
+		
+	</div>
+
+	<!-- 添加知识库对话框 -->
+	<div class="ui small modal transition" style="height: 550px">
+		<i class="close icon"></i>
+		<div class="header popup">回答留言
+			<i class="info circle icon answerhelp" data-html="
+			   	<div class='ui' style='width: 236px;'>
+				   	<div class='ui top attached label'>回答方式有两种:</div>
+				   	<div class='labelfont'>
+				   		<b style=color:#646565>1.仅回答：</b>
+				   		<span style=color:#979898>提出该问题的用户在下次问及该问题时,机器人会直接给出答案,但该答案并不会对其他访客生效</span><br>
+				   		<b style=color:#646565>2.回答并学习: </b>
+				   		<span style=color:#979898>对该问题进行回答后,该问答自动保存在知识库中,并对所有访客生效</span>
+				   	</div>
+				</div>" data-position="right center">
+			</i>
+		</div>
+		<div class="content">
+			<div id='addAsks' style="overflow-y:auto;max-height:150px">
+				<div class="firstAsk">
+					<div class="ui small form">
+						<div class="inline required fields">
+							<div class="fourteen wide field">
+								<label style="width: 75px;">留言内容:</label>
+								<input type="text" name='askValue' readonly>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui top attached tabular menu">
+			  	<a class="active item" data-tab="first">编辑答案回答</a>
+			  	<a class="item" data-tab="second">相似问题答案回答</a>
+			</div>
+			<div class="ui bottom attached active tab segment" data-tab="first">
+			  	<div style="overflow-y: auto;height: 222px;width: 100%;">
+					<script type="text/plain" id="addEditor" style="overflow-y:auto;height:155px;width: 616px;">
+						<p class="hint">请输入留言对应答案...</p>
+					</script>
+				</div>
+				<div>
+					<label>选择问题分类：</label><a class="classifybtn" href="javascript:void(0)">未知分类</a>
+				</div>
+			</div>
+			<div class="ui bottom attached tab segment" data-tab="second">
+			  	<div>
+					<label>选择问题分类：</label><a class="classifybtn" href="javascript:void(0)">未知分类</a>
+					<div class="ui icon mini input" style="margin-left: 190px;width: 280px;">
+					  	<input type="text" placeholder="搜索...">
+					  	<i class="search link icon"></i>
+					</div>
+				</div>
+				<table class="ui table">
+				  <tbody>
+				    <tr>
+				      <td class="collapsing">
+				        <div class="ui radio checkbox">
+					        <input type="radio" name="fruit">
+					    </div>
+				      </td>
+				      <td>Initial commit</td>
+				      <td>2016-12-22 11:19:27</td>
+				    </tr>
+				    <tr>
+				      <td>
+				        <div class="ui radio checkbox">
+					        <input type="radio" name="fruit">
+					    </div>
+				      </td>
+				      <td>Initial commit</td>
+				      <td>2016-12-22 11:19:27</td>
+				    </tr>
+				    <tr>
+				      <td>
+				        <div class="ui radio checkbox">
+					        <input type="radio" name="fruit">
+					    </div>
+				      </td>
+				      <td>Initial commit</td>
+				      <td>2016-12-22 11:19:27</td>
+				    </tr>
+				    <tr>
+				      <td class="collapsing">
+				        <div class="ui radio checkbox">
+					        <input type="radio" name="fruit">
+					    </div>
+				      </td>
+				      <td>Initial commit</td>
+				      <td>2016-12-22 11:19:27</td>
+				    </tr>
+				    <tr>
+				      <td class="collapsing">
+				        <div class="ui radio checkbox">
+					        <input type="radio" name="fruit">
+					    </div>
+				      </td>
+				      <td>XXX小区可以公积金贷款买房吗？XXX小区可以公积金贷款买房吗？</td>
+				      <td>2016-12-22 11:19:27</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+			
+			<div class="ui divider"></div>
+			<div class="actions inverted segment">
+				<button class="ui right floated red inverted cancel button">
+					<i class="remove icon"></i>取消
+				</button>
+				<button class="ui right floated green inverted ok button">
+					<i class="checkmark icon"></i>仅回答
+				</button>
+				<button class="ui right floated green inverted ok button">
+					<i class="checkmark icon"></i>回答并学习
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="semantic/semantic.js"></script>
+	<script type="text/javascript" src="layer/layer.js"></script>
+
+	<script type="text/javascript" charset="utf-8" src="umeditor/umeditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="umeditor/umeditor.min.js"></script>
+	<script type="text/javascript" src="umeditor/lang/zh-cn/zh-cn.js"></script>
+
+	<script type="text/javascript"></script>
+
+	<script type="text/javascript">
+		$(function(){
+			$('.menu .item').tab();
+			$('.popup .rightAlign').popup();
+			$('.ui.dropdown').dropdown({on: 'hover'});
+			$('.ui.radio.checkbox').checkbox();
+			//点击显示树形结构div
+			$('.classifybtn').on('click', function(){
+				layer.open({
+				  	type: 1,
+				  	skin: 'layui-layer-rim', //加上边框
+				  	area: ['420px', '264px'], //宽高
+				  	content: 'html内容(树形结构)'
+				});
+			});
+			//添加按钮
+			$('tbody tr').on('mouseover', function(){
+				if($(this).find('.addbtn').length) return;
+				$('tbody').find('.addbtn').remove();
+				$(this).find('.commentCont').append(
+					'<span class="ui addbtn">'+
+						'<div class="ui inverted green mini button answerBtn">回答</div>'+
+						'<div class="ui inverted red mini button ignoreBtn">忽略</div>'+
+					'</span>');
+			});
+			$('tbody tr').on('mouseleave', function(){
+				$('tbody').find('.addbtn').remove();
+			});
+			//点击行选中
+			$('.content tbody tr').on('click',function(){
+				$('tbody tr').each(function(){
+					if($(this).hasClass('active')){
+						$(this).removeClass('active');
+					}
+				});
+				$(this).addClass('active');
+				$(this).find('input:radio').prop('checked','checked');
+			});
+			//var um = UM.getEditor('addEditor');
+			window.um = UM.getEditor('addEditor', {
+				/* 传入配置参数,可配参数列表看umeditor.config.js */
+				toolbar: [ 'source | undo redo | bold italic underline strikethrough | superscript subscript | forecolor backcolor | removeformat |',
+				'insertorderedlist insertunorderedlist | selectall cleardoc paragraph | fontfamily fontsize' ,
+				'| justifyleft justifycenter justifyright justifyjustify |',
+				'link unlink|','formula']
+			});
+			//回答弹窗
+			$('tbody').on('click','.answerBtn', function(){
+				$('.modal').modal({
+					//closable  : false,
+					onDeny : function(){
+						window.alert('清空表单!');
+					},
+					onApprove : function() {
+						window.alert('发送ajax!');
+					},
+					onHidden: function(){
+						$("#modal input").val("");
+						$('#addEditor').empty();
+						$('#addEditor').html('<p class="hint">请输入留言对应答案...</p>');
+					}
+				}).modal('show');
+				var commentCont = $(this).parents('.commentCont').find('span').first().text();
+				$('input[name="askValue"]').val(commentCont);
+				$('.popup .answerhelp').popup();
+				$('#addEditor').on('click', function(){
+					var hint = $(this).find('.hint').length;
+					if(hint){
+						$(this).empty();
+					}
+				});
+				$('#addEditor').on('blur', function(){
+					var isempty = $(this).text().trim();
+					if(!isempty){
+						$(this).html('<p class="hint">请输入留言对应答案...</p>');
+					}
+				});
+			});
+			//忽略
+			$('tbody').on('click','.ignoreBtn', function(){
+				alert("忽略");
+			});
+			//清空输入信息
+			
+
+		})
+	</script>
+</body>
+</html>
