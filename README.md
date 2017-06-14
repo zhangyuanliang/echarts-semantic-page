@@ -1,5 +1,9 @@
 # echarts-semantic-page
 
+Demo演示：
+-[https://zhangyuanliang.github.io/echarts-semantic-page/Statistics.html](https://zhangyuanliang.github.io/echarts-semantic-page/Statistics.html)
+-[https://zhangyuanliang.github.io/echarts-semantic-page/coment.html](https://zhangyuanliang.github.io/echarts-semantic-page/coment.html)
+
 应用echarts实现简单统计页面，以及semantic留言问题页面，如下图所示：
 
 ### 页面（Statistics.html）
